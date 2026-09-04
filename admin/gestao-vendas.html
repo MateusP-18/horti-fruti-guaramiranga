@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestão de Vendas — Painel Hortifruti Guaramiranga</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="../assets/img/logo-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<a class="skip-link" href="#admContent">Pular para o conteúdo</a>
+
+<div class="adm-shell">
+  <div class="adm-sidebar-overlay" id="admSidebarOverlay"></div>
+  <aside class="adm-sidebar" id="admSidebar" aria-label="Navegação do painel">
+    <div class="adm-sidebar__brand">
+      <img src="../assets/img/logo-160.png" alt="">
+      <div>
+        <strong>Hortifruti Guaramiranga</strong>
+        <span>Painel administrativo</span>
+      </div>
+    </div>
+    <nav class="adm-nav">
+      <a href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="5" rx="1.5"/><rect x="13" y="12" width="8" height="9" rx="1.5"/><rect x="3" y="15" width="8" height="6" rx="1.5"/></svg>
+        Dashboard
+      </a>
+      <a href="midias.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="M21 15l-5-5-9 9"/></svg>
+        Mídias do Site
+      </a>
+      <a href="produtos.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+        Seções de Produtos
+      </a>
+      <a href="estoque.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/><path d="M10 16h4"/></svg>
+        Estoque
+      </a>
+      <a href="gestao-vendas.html" class="is-active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l3 3v17H6z"/><path d="M9 7h6M9 11h6M9 15h3"/></svg>
+        Gestão de Vendas
+      </a>
+      <a href="analise-vendas.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M6 21V10M12 21V4M18 21v-7"/></svg>
+        Análise de Vendas
+      </a>
+      <a href="analytics.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+        Analytics do Site
+      </a>
+    </nav>
+    <div class="adm-sidebar__foot">
+      <a href="../index.html">← Ver site público</a>
+    </div>
+  </aside>
+
+  <div class="adm-main">
+    <header class="adm-topbar">
+      <button type="button" class="adm-toggle" id="admToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="admSidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <span class="adm-topbar__title">Gestão de Vendas</span>
+    </header>
+
+    <main class="adm-content" id="admContent">
+      <div class="adm-page-head">
+        <h1>Gestão de Vendas</h1>
+        <p>Área operacional: registrar vendas, pagamentos e controlar o caixa do dia. (A análise estatística fica em <a href="analise-vendas.html" style="color:var(--mata); font-weight:700;">Análise de Vendas</a>.)</p>
+      </div>
+
+      <div class="adm-tabs" role="tablist">
+        <button type="button" role="tab" data-tab="vendas" class="is-active" aria-selected="true">Vendas</button>
+        <button type="button" role="tab" data-tab="pagamentos" aria-selected="false">Pagamentos</button>
+        <button type="button" role="tab" data-tab="caixa" aria-selected="false">Caixa</button>
+      </div>
+
+      <!-- ===== Vendas ===== -->
+      <div class="adm-tabpanel" id="tab-vendas">
+        <div class="adm-page-head__row" style="margin-bottom:18px;">
+          <p style="font-size:.85rem; color:var(--adm-text-60); margin:0; max-width:56ch;">Vendas feitas pelo site (via carrinho/WhatsApp) entram aqui automaticamente. Use "Nova venda" para lançar uma venda presencial.</p>
+          <button type="button" class="adm-btn adm-btn--primary" id="btnNovaVenda">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Nova venda presencial
+          </button>
+        </div>
+
+        <section class="adm-panel" id="vendaFormPanel" hidden>
+          <h2>Nova venda presencial</h2>
+          <form class="adm-form" id="vendaForm" novalidate style="max-width:520px;">
+            <div class="adm-field">
+              <label for="vdProduto">Produto</label>
+              <select id="vdProduto"></select>
+            </div>
+            <div class="adm-field">
+              <label for="vdQty">Quantidade</label>
+              <div class="adm-field-row-inline">
+                <input type="number" id="vdQty" min="1" step="1" value="1" style="max-width:120px;">
+                <button type="button" class="adm-btn adm-btn--ghost adm-btn--sm" id="vdAddItem">+ Adicionar item</button>
+              </div>
+            </div>
+            <div class="adm-field">
+              <label>Itens da venda</label>
+              <div id="vdItems" style="display:flex; flex-direction:column; gap:8px;"></div>
+              <p class="adm-empty-inline" id="vdItemsEmpty" style="padding:12px 0;">Nenhum item adicionado ainda.</p>
+            </div>
+            <div class="adm-field">
+              <label for="vdPagamento">Forma de pagamento</label>
+              <select id="vdPagamento"></select>
+            </div>
+            <div class="adm-field" id="vdDinheiroBlock" hidden>
+              <label for="vdRecebido">Valor recebido (dinheiro)</label>
+              <input type="number" id="vdRecebido" min="0" step="0.01">
+              <span class="adm-hint" id="vdTrocoHint"></span>
+            </div>
+            <div class="adm-field">
+              <label for="vdStatusPg">Status do pagamento</label>
+              <select id="vdStatusPg">
+                <option value="pago">Pago</option>
+                <option value="aguardando">Aguardando</option>
+                <option value="parcial">Parcialmente pago</option>
+              </select>
+            </div>
+            <p class="adm-form-error" id="vendaError" hidden></p>
+            <div class="adm-form__actions">
+              <button type="submit" class="adm-btn adm-btn--primary">Registrar venda</button>
+              <button type="button" class="adm-btn adm-btn--ghost" id="btnCancelVenda">Cancelar</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="adm-panel">
+          <div class="adm-panel__head"><div><h2>Vendas registradas</h2></div></div>
+          <div class="adm-table-wrap">
+            <table class="adm-table">
+              <thead><tr><th>Data</th><th>Origem</th><th>Itens</th><th>Total</th><th>Status</th><th></th></tr></thead>
+              <tbody id="vendasBody"></tbody>
+            </table>
+          </div>
+          <p class="adm-empty-inline" id="vendasEmpty" hidden>Nenhuma venda registrada ainda.</p>
+        </section>
+      </div>
+
+      <!-- ===== Pagamentos ===== -->
+      <div class="adm-tabpanel" id="tab-pagamentos" hidden>
+        <section class="adm-panel" id="pgFormPanel">
+          <h2>Registrar pagamento de uma venda</h2>
+          <p style="font-size:.82rem; color:var(--adm-text-60); margin-top:-8px;">Útil para confirmar o pagamento de vendas do site que ainda estão "Aguardando".</p>
+          <form class="adm-form" id="pgForm" novalidate style="max-width:460px;">
+            <div class="adm-field">
+              <label for="pgVenda">Venda</label>
+              <select id="pgVenda"></select>
+            </div>
+            <div class="adm-field">
+              <label for="pgMetodo">Forma de pagamento</label>
+              <select id="pgMetodo"></select>
+            </div>
+            <div class="adm-field" id="pgDinheiroBlock" hidden>
+              <label for="pgRecebido">Valor recebido (dinheiro)</label>
+              <input type="number" id="pgRecebido" min="0" step="0.01">
+              <span class="adm-hint" id="pgTrocoHint"></span>
+            </div>
+            <div class="adm-field">
+              <label for="pgStatus">Status</label>
+              <select id="pgStatus">
+                <option value="pago">Pago</option>
+                <option value="aguardando">Aguardando</option>
+                <option value="parcial">Parcialmente pago</option>
+                <option value="cancelado">Cancelado</option>
+                <option value="estornado">Estornado</option>
+              </select>
+            </div>
+            <p class="adm-form-error" id="pgError" hidden></p>
+            <div class="adm-form__actions">
+              <button type="submit" class="adm-btn adm-btn--primary">Registrar pagamento</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="adm-panel">
+          <div class="adm-panel__head"><div><h2>Pagamentos registrados</h2></div></div>
+          <div class="adm-table-wrap">
+            <table class="adm-table">
+              <thead><tr><th>Data</th><th>Forma</th><th>Valor da venda</th><th>Recebido</th><th>Troco</th><th>Status</th></tr></thead>
+              <tbody id="pagamentosBody"></tbody>
+            </table>
+          </div>
+          <p class="adm-empty-inline" id="pagamentosEmpty" hidden>Nenhum pagamento registrado ainda.</p>
+        </section>
+      </div>
+
+      <!-- ===== Caixa ===== -->
+      <div class="adm-tabpanel" id="tab-caixa" hidden>
+        <div id="caixaFechado">
+          <section class="adm-panel" style="max-width:460px;">
+            <h2>Abrir caixa</h2>
+            <form class="adm-form" id="abrirCaixaForm" novalidate>
+              <div class="adm-field"><label for="cxInicial">Valor inicial</label><input type="number" id="cxInicial" min="0" step="0.01" value="0"></div>
+              <div class="adm-field"><label for="cxResponsavel">Responsável</label><input type="text" id="cxResponsavel" placeholder="Nome de quem está abrindo o caixa"></div>
+              <div class="adm-form__actions"><button type="submit" class="adm-btn adm-btn--primary">Abrir caixa</button></div>
+            </form>
+          </section>
+        </div>
+
+        <div id="caixaAberto" hidden>
+          <div class="adm-cards" id="cxCards"></div>
+
+          <div class="adm-grid-2">
+            <section class="adm-panel">
+              <h2>Registrar movimentação de caixa</h2>
+              <form class="adm-form" id="cxMovForm" novalidate>
+                <div class="adm-field"><label for="cxMovTipo">Tipo</label>
+                  <select id="cxMovTipo"><option value="entrada">Entrada</option><option value="retirada">Retirada</option><option value="ajuste">Ajuste</option></select>
+                </div>
+                <div class="adm-field"><label for="cxMovValor">Valor</label><input type="number" id="cxMovValor" min="0.01" step="0.01"></div>
+                <div class="adm-field"><label for="cxMovNota">Observação <span class="adm-hint">(opcional)</span></label><input type="text" id="cxMovNota"></div>
+                <div class="adm-form__actions"><button type="submit" class="adm-btn adm-btn--ghost">Registrar</button></div>
+              </form>
+              <div class="adm-table-wrap" style="margin-top:16px;">
+                <table class="adm-table"><thead><tr><th>Data</th><th>Tipo</th><th>Valor</th><th>Obs.</th></tr></thead><tbody id="cxMovBody"></tbody></table>
+              </div>
+            </section>
+
+            <section class="adm-panel">
+              <h2>Fechar caixa</h2>
+              <p style="font-size:.82rem; color:var(--adm-text-60);">Confira o valor em dinheiro na gaveta e informe abaixo.</p>
+              <div id="cxResumo" style="font-size:.86rem; margin-bottom:16px;"></div>
+              <form class="adm-form" id="fecharCaixaForm" novalidate>
+                <div class="adm-field"><label for="cxInformado">Total informado (contado)</label><input type="number" id="cxInformado" min="0" step="0.01"></div>
+                <div class="adm-form__actions"><button type="submit" class="adm-btn adm-btn--danger">Fechar caixa</button></div>
+              </form>
+            </section>
+          </div>
+        </div>
+
+        <section class="adm-panel">
+          <div class="adm-panel__head"><div><h2>Histórico de caixas</h2></div></div>
+          <div class="adm-table-wrap">
+            <table class="adm-table"><thead><tr><th>Abertura</th><th>Fechamento</th><th>Responsável</th><th>Inicial</th><th>Esperado</th><th>Informado</th><th>Diferença</th></tr></thead><tbody id="cxHistBody"></tbody></table>
+          </div>
+          <p class="adm-empty-inline" id="cxHistEmpty" hidden>Nenhum caixa fechado ainda.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../shared/core/store.js"></script>
+<script src="../shared/services/productsService.js"></script>
+<script src="../shared/services/inventoryService.js"></script>
+<script src="../shared/services/salesService.js"></script>
+<script src="../shared/services/paymentsService.js"></script>
+<script src="../shared/services/cashService.js"></script>
+<script src="../shared/services/analyticsService.js"></script>
+<script src="../shared/services/reviewsService.js"></script>
+<script src="../shared/services/mediaService.js"></script>
+<script src="assets/js/admin-ui.js"></script>
+<script src="assets/js/gestao-vendas.js"></script>
+</body>
+</html>

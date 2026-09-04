@@ -59,18 +59,22 @@
     </a>
 
     <nav class="nav" id="nav" aria-label="Navegação principal">
-      <a href="#categorias">Hortifruti</a>
-      <a href="#acougue">Açougue</a>
+      <a href="#produtos-hortifruti">Hortifruti</a>
+      <a href="#produtos-polpas">Polpas</a>
+      <a href="#produtos-acougue">Açougue</a>
       <a href="#ofertas">Ofertas</a>
-      <a href="#diferenciais">Diferenciais</a>
       <a href="#localizacao">Localização</a>
     </nav>
 
     <div class="header__actions">
       <a class="btn btn--wa btn--sm" href="https://wa.me/message/4MNKUYFCIBTYP1" target="_blank" rel="noopener noreferrer">
         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4.2-.4c.1-.1.1-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.1 1.5-.1.5-.2 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
-        Peça no WhatsApp
+        <span class="btn__label">Peça no WhatsApp</span>
       </a>
+      <button type="button" class="icon-btn js-open-cart" aria-label="Abrir carrinho de compras">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/><path d="M2.5 3h2l2.6 12.4a1.8 1.8 0 0 0 1.8 1.4h8.2a1.8 1.8 0 0 0 1.75-1.4L21 7.5H6.1"/></svg>
+        <span class="icon-btn__badge js-cart-count" hidden>0</span>
+      </button>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu">
         <span></span><span></span><span></span>
       </button>
@@ -127,29 +131,63 @@
       <h2 class="section__title" data-reveal>Tudo pro dia a dia, num só lugar</h2>
 
       <div class="cards3">
-        <article class="cat-card" data-reveal>
+        <a class="cat-card" href="#produtos-hortifruti" data-reveal>
           <span class="cat-card__icon">🥬</span>
           <h3>Hortifruti</h3>
           <p>Frutas, verduras e legumes selecionados com cuidado, todos os dias.</p>
-        </article>
+        </a>
 
-        <article class="cat-card cat-card--highlight" data-reveal>
+        <a class="cat-card cat-card--highlight" href="#produtos-acougue" data-reveal>
           <span class="cat-card__badge">Novidade</span>
           <span class="cat-card__icon">🥩</span>
           <h3>Açougue</h3>
           <p>Cortes selecionados, na medida que você precisar.</p>
-        </article>
+        </a>
 
-        <article class="cat-card" data-reveal>
+        <a class="cat-card" href="#produtos-polpas" data-reveal>
           <span class="cat-card__icon">🧃</span>
           <h3>Polpas &amp; Mercearia</h3>
           <p>Polpas de frutas em vários sabores e itens do dia a dia pra completar a feira.</p>
-        </article>
+        </a>
       </div>
     </div>
   </section>
 
-  <div class="torn" style="--torn-a:var(--creme); --torn-b:var(--pitaya);" aria-hidden="true"></div>
+  <div class="torn" style="--torn-a:var(--creme); --torn-b:var(--verde-hf);" aria-hidden="true"></div>
+
+  <!-- ================= PRODUTOS: HORTIFRUTI ================= -->
+  <section class="product-section product-section--hortifruti" id="produtos-hortifruti" aria-labelledby="produtos-hortifruti-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow eyebrow--center" data-reveal>🥬 Fresquinho da horta</p>
+        <h2 id="produtos-hortifruti-title" data-reveal>Hortifruti</h2>
+      </div>
+      <div class="carousel" data-carousel="hortifruti">
+        <button type="button" class="carousel-arrow left" hidden aria-label="Produtos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="carousel-viewport"><div class="carousel-track" role="list"></div></div>
+        <button type="button" class="carousel-arrow right" aria-label="Próximos produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="torn" style="--torn-a:var(--verde-hf); --torn-b:var(--manga);" aria-hidden="true"></div>
+
+  <!-- ================= PRODUTOS: POLPAS ================= -->
+  <section class="product-section product-section--polpas" id="produtos-polpas" aria-labelledby="produtos-polpas-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow eyebrow--center" data-reveal>🧃 Sabor tropical</p>
+        <h2 id="produtos-polpas-title" data-reveal>Polpas</h2>
+      </div>
+      <div class="carousel" data-carousel="polpas">
+        <button type="button" class="carousel-arrow left" hidden aria-label="Produtos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="carousel-viewport"><div class="carousel-track" role="list"></div></div>
+        <button type="button" class="carousel-arrow right" aria-label="Próximos produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="torn" style="--torn-a:var(--manga); --torn-b:var(--pitaya);" aria-hidden="true"></div>
 
   <!-- ================= AÇOUGUE ================= -->
   <section class="band band--acougue" id="acougue">
@@ -179,7 +217,24 @@
     </div>
   </section>
 
-  <div class="torn" style="--torn-a:var(--pitaya); --torn-b:var(--mata-2);" aria-hidden="true"></div>
+  <div class="torn" style="--torn-a:var(--pitaya); --torn-b:var(--vinho);" aria-hidden="true"></div>
+
+  <!-- ================= PRODUTOS: AÇOUGUE ================= -->
+  <section class="product-section product-section--acougue" id="produtos-acougue" aria-labelledby="produtos-acougue-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow eyebrow--center" data-reveal>🥩 Cortes selecionados</p>
+        <h2 id="produtos-acougue-title" data-reveal>Açougue</h2>
+      </div>
+      <div class="carousel" data-carousel="acougue">
+        <button type="button" class="carousel-arrow left" hidden aria-label="Produtos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="carousel-viewport"><div class="carousel-track" role="list"></div></div>
+        <button type="button" class="carousel-arrow right" aria-label="Próximos produtos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="torn" style="--torn-a:var(--vinho); --torn-b:var(--mata-2);" aria-hidden="true"></div>
 
   <!-- ================= OFERTAS ================= -->
   <section class="section section--board" id="ofertas">
@@ -346,8 +401,9 @@
     </div>
 
     <nav class="footer__nav" aria-label="Navegação do rodapé">
-      <a href="#categorias">Hortifruti</a>
-      <a href="#acougue">Açougue</a>
+      <a href="#produtos-hortifruti">Hortifruti</a>
+      <a href="#produtos-polpas">Polpas</a>
+      <a href="#produtos-acougue">Açougue</a>
       <a href="#ofertas">Ofertas</a>
       <a href="#diferenciais">Diferenciais</a>
       <a href="#localizacao">Localização</a>
@@ -364,6 +420,72 @@
   </div>
 </footer>
 
+<!-- ================= CARRINHO (DRAWER) ================= -->
+<div id="cart-overlay" class="js-close-cart"></div>
+<aside id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
+  <div class="cart-head">
+    <h2 id="cart-title">Seu carrinho</h2>
+    <button type="button" class="cart-close js-close-cart" aria-label="Fechar carrinho">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-foot">
+    <div class="cart-subtotal-row"><span>Total</span><span id="cart-subtotal">R$ 00,00</span></div>
+    <button type="button" class="btn btn--primary btn--block" id="cart-whatsapp-btn" style="width:100%; justify-content:center;">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20Zm4.4-5.9c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4.2-.4c.1-.1.1-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.1 1.5-.1.5-.2 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3Z"/></svg>
+      Enviar pedido pelo WhatsApp
+    </button>
+    <p class="cart-hint">Você confirma e envia a mensagem diretamente no WhatsApp.</p>
+  </div>
+</aside>
+
+<!-- ================= MODAL DO PRODUTO ================= -->
+<div id="modal-overlay" class="js-close-modal" aria-hidden="true">
+  <div id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-media">
+      <button type="button" class="modal-close js-close-modal" aria-label="Fechar detalhes do produto">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="ph" id="modal-media-ph">
+        <span class="ph__icon" id="modal-icon"></span>
+        <span class="ph__label" id="modal-media-label"></span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3 id="modal-title"></h3>
+      <p class="modal-price" id="modal-price"></p>
+      <p class="modal-desc" id="modal-desc"></p>
+      <p class="modal-unavailable-note" id="modal-unavailable-note" hidden>Produto indisponível no momento.</p>
+
+      <div id="modal-qty-block">
+        <p class="modal-block-label">Quantidade</p>
+        <div class="modal-qty">
+          <button type="button" id="modal-qty-minus" aria-label="Diminuir quantidade">–</button>
+          <span id="modal-qty-value">1</span>
+          <button type="button" id="modal-qty-plus" aria-label="Aumentar quantidade">+</button>
+        </div>
+        <p class="modal-stock-note" id="modal-stock-note"></p>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn--primary" id="modal-add-btn" style="width:100%; justify-content:center;">Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Núcleo de dados e serviços compartilhados com o painel administrativo
+     (mesma fonte de dados local — ver shared/README.md) -->
+<script src="shared/core/store.js"></script>
+<script src="shared/services/productsService.js"></script>
+<script src="shared/services/inventoryService.js"></script>
+<script src="shared/services/salesService.js"></script>
+<script src="shared/services/paymentsService.js"></script>
+<script src="shared/services/cashService.js"></script>
+<script src="shared/services/analyticsService.js"></script>
+<script src="shared/services/reviewsService.js"></script>
+<script src="shared/services/mediaService.js"></script>
 <script src="assets/js/script.js" defer></script>
 </body>
 </html>

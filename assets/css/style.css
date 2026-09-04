@@ -9,6 +9,8 @@
   --manga:     #F2A93B;   /* laranja-manga — CTA / destaque */
   --manga-2:   #D98A1F;   /* laranja-manga escuro (hover) */
   --pitaya:    #C1272D;   /* vermelho-morango — açougue / urgência */
+  --vinho:     #7A1B22;   /* vermelho-vinho escuro — seção de produtos do açougue (variação do pitaya) */
+  --verde-hf:  #2E6A45;   /* verde-produtos — seção de produtos do hortifruti (variação do mata/folha) */
   --creme:     #FAF6EC;   /* creme-feira — fundo */
   --creme-2:   #F1E9D8;   /* creme mais escuro (fundos alternados) */
   --carvao:    #22281E;   /* texto principal */
@@ -147,6 +149,28 @@ blockquote{ margin:0; }
 
 .header__actions{ display:flex; align-items:center; gap:14px; }
 
+.icon-btn{
+  position:relative; width:42px; height:42px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  background: var(--creme-2); color: var(--mata);
+  transition: transform .2s var(--ease), background .2s var(--ease);
+}
+.icon-btn:hover{ transform: translateY(-2px); background: #eee2c8; }
+.icon-btn svg{ width:20px; height:20px; }
+.icon-btn__badge{
+  position:absolute; top:-4px; right:-4px; min-width:19px; height:19px; padding:0 4px;
+  border-radius:999px; background: var(--pitaya); color:#fff;
+  font-family: var(--f-mono); font-size:.62rem; line-height:19px; text-align:center;
+  box-shadow: 0 0 0 2px var(--creme);
+}
+.icon-btn__badge[hidden]{ display:none; }
+
+/* Botão do carrinho: destaque em amarelo (manga), só este botão — o hover
+   de "levantar" (translateY) já existente em .icon-btn é preservado acima,
+   aqui só a cor de fundo do hover muda para combinar com o amarelo. */
+.js-open-cart{ background: var(--manga); color: var(--carvao); }
+.js-open-cart:hover{ background: var(--manga-2); }
+
 .nav-toggle{ display:flex; flex-direction:column; gap:5px; padding:6px; }
 .nav-toggle span{ width:22px; height:2px; background: var(--carvao); border-radius:2px; transition: transform .25s var(--ease), opacity .25s var(--ease); }
 .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
@@ -172,13 +196,17 @@ blockquote{ margin:0; }
 }
 
 /* telas bem estreitas: aperta o cabeçalho pra tudo caber numa linha só */
-@media (max-width: 420px){
+@media (max-width: 480px){
   .header__row{ gap: 8px; }
-  .header__actions{ gap: 8px; }
+  .header__actions{ gap: 6px; }
   .brand{ gap: 8px; }
   .brand__logo{ width: 38px; height: 38px; }
   .brand__name{ font-size: .82rem; }
-  .btn--sm{ padding: 9px 14px; font-size: .78rem; }
+  .icon-btn{ width: 38px; height: 38px; }
+  .icon-btn svg{ width:18px; height:18px; }
+  /* botão de WhatsApp do header vira só ícone (redondo) pra caber ao lado do carrinho */
+  .header .btn--wa{ padding:0; width:38px; height:38px; justify-content:center; flex-shrink:0; }
+  .header .btn--wa .btn__label{ display:none; }
 }
 
 /* =========================================================
@@ -271,7 +299,7 @@ blockquote{ margin:0; }
 @media (min-width: 760px){ .cards3{ grid-template-columns: repeat(3,1fr); } }
 
 .cat-card{
-  background: var(--papel); border-radius: var(--radius);
+  display:block; background: var(--papel); border-radius: var(--radius);
   padding: 32px 26px; box-shadow: var(--shadow-1);
   position:relative; transition: transform .25s var(--ease), box-shadow .25s var(--ease);
 }
@@ -388,6 +416,197 @@ blockquote{ margin:0; }
 .footer__nav{ display:flex; flex-direction:column; gap: 10px; font-size:.92rem; }
 .footer__contact{ display:flex; flex-direction:column; gap: 10px; font-size:.92rem; }
 .footer__bottom{ padding-block: 20px; font-size:.78rem; color: rgba(255,255,255,.5); }
+
+/* =========================================================
+   SEÇÕES DE PRODUTOS (Hortifruti / Polpas / Açougue)
+   ========================================================= */
+.product-section{ padding-block: 84px; position:relative; }
+.product-section .section-head{ margin-bottom: 40px; text-align:center; }
+
+.product-section--hortifruti{ background: var(--verde-hf); color:#fff; }
+.product-section--hortifruti .eyebrow, .product-section--hortifruti h2{ color:#fff; }
+
+.product-section--polpas{ background: var(--manga); color: var(--carvao); }
+
+.product-section--acougue{ background: var(--vinho); color:#fff; }
+.product-section--acougue .eyebrow, .product-section--acougue h2{ color:#fff; }
+
+/* =========================================================
+   CARROSSEL DE PRODUTOS — colunas definidas via JS (inline style),
+   conteúdo da página trocado no DOM a cada navegação (sem scroll-track)
+   ========================================================= */
+.carousel{ position:relative; }
+.carousel-viewport{ overflow:hidden; }
+.carousel-track{ display:grid; gap:16px; }
+
+.carousel-arrow{
+  position:absolute; top:50%; translate:0 -50%; z-index:2;
+  width:44px; height:44px; border-radius:50%;
+  background:#fff; color: var(--carvao);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: var(--shadow-2);
+  transition: background .2s var(--ease), box-shadow .2s var(--ease);
+}
+/* Setas 100% fixas: nenhum transform/translate/scale no hover — só uma
+   mudança sutil de cor de fundo. (A centralização vertical continua vindo
+   da propriedade `translate` acima, que não é tocada aqui.) */
+.carousel-arrow:hover{ background: var(--creme-2); }
+.carousel-arrow svg{ width:20px; height:20px; }
+.carousel-arrow.left{ left:-8px; }
+.carousel-arrow.right{ right:-8px; }
+.carousel-arrow[hidden]{ display:none; }
+@media (min-width: 1024px){
+  .carousel-arrow.left{ left:-22px; }
+  .carousel-arrow.right{ right:-22px; }
+}
+@media (max-width: 480px){
+  .carousel-arrow{ width:34px; height:34px; }
+  .carousel-arrow.left{ left:-2px; }
+  .carousel-arrow.right{ right:-2px; }
+}
+
+.carousel-empty{ text-align:center; padding: 40px 20px; opacity:.85; font-size:.95rem; }
+
+/* =========================================================
+   CARD DE PRODUTO
+   ========================================================= */
+.product-card{
+  display:flex; flex-direction:column; text-align:left; width:100%;
+  background:#fff; border-radius: var(--radius); overflow:hidden;
+  box-shadow: var(--shadow-1); color: var(--carvao);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  position:relative;
+}
+.product-card:hover{ transform: translateY(-4px); box-shadow: var(--shadow-2); }
+.product-card:disabled{ opacity:.6; cursor:not-allowed; }
+.product-card:disabled:hover{ transform:none; }
+.product-card .ph{ border-radius:0; aspect-ratio: 1/1; border-width:0 0 2px; padding:12px; }
+.product-card .ph__icon{ font-size: 2.6rem; }
+.product-card .ph__label{ display:none; }
+
+.product-card__unavailable{
+  position:absolute; top:10px; right:10px; z-index:2;
+  background: var(--carvao); color:#fff;
+  font-family: var(--f-mono); font-size:.6rem; letter-spacing:.03em;
+  padding: 5px 9px; border-radius:999px;
+}
+
+.product-card__body{ padding: 14px 16px 16px; display:flex; flex-direction:column; gap:6px; flex:1; }
+.product-card__name{ font-weight:700; font-size:.98rem; line-height:1.25; }
+.product-card__price{ font-family: var(--f-mono); font-size:1.15rem; }
+.product-card__price small{ font-family: var(--f-body); font-weight:600; font-size:.68rem; color: var(--carvao-60); margin-left:2px; }
+.product-section--hortifruti .product-card__price{ color: var(--verde-hf); }
+.product-section--polpas .product-card__price{ color: var(--manga-2); }
+.product-section--acougue .product-card__price{ color: var(--vinho); }
+
+.product-card__add{
+  margin-top:auto; display:flex; align-items:center; gap:6px;
+  font-size:.78rem; font-weight:700; color: var(--carvao-60);
+  padding-top:8px; border-top:1px dashed rgba(34,40,30,.15);
+}
+.product-card__add svg{ width:15px; height:15px; }
+
+/* =========================================================
+   MODAL DE PRODUTO
+   ========================================================= */
+#modal-overlay{
+  position:fixed; inset:0; z-index:150;
+  background: rgba(20,25,15,.6); backdrop-filter: blur(3px);
+  display:flex; align-items:flex-end; justify-content:center;
+  opacity:0; pointer-events:none; transition: opacity .3s var(--ease);
+}
+#modal-overlay.is-open{ opacity:1; pointer-events:auto; }
+@media (min-width: 720px){ #modal-overlay{ align-items:center; padding:24px; } }
+
+#product-modal{
+  background:#fff; color: var(--carvao); width:100%; max-width:560px; max-height:92svh; overflow-y:auto;
+  border-radius: 26px 26px 0 0;
+  transform: translateY(24px); transition: transform .35s var(--ease);
+}
+#modal-overlay.is-open #product-modal{ transform:translateY(0); }
+@media (min-width: 720px){
+  #product-modal{ border-radius: var(--radius); display:grid; grid-template-columns:1fr 1fr; max-height:88svh; }
+}
+
+.modal-media{ position:relative; overflow:hidden; }
+.modal-media .ph{ border-radius:0; aspect-ratio: 4/3; }
+.modal-media .ph__icon{ font-size:3.6rem; }
+@media (min-width: 720px){ .modal-media .ph{ aspect-ratio:auto; height:100%; } }
+
+.modal-close{
+  position:absolute; top:14px; right:14px; z-index:3;
+  width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.92);
+  display:flex; align-items:center; justify-content:center; box-shadow: var(--shadow-1);
+}
+
+.modal-body{ padding:26px 24px 30px; }
+.modal-body h3{ font-size:1.5rem; }
+.modal-price{ margin-top:4px; font-family: var(--f-mono); font-size:1.25rem; color: var(--pitaya); }
+.modal-price small{ font-family: var(--f-body); font-weight:600; font-size:.7rem; color: var(--carvao-60); }
+.modal-desc{ margin-top:12px; font-size:.9rem; color: var(--carvao-60); }
+.modal-unavailable-note{ margin-top:12px; font-size:.85rem; font-weight:700; color: var(--pitaya); }
+
+.modal-block-label{ margin-top:20px; font-family: var(--f-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color: var(--carvao-60); }
+.modal-qty{ display:flex; align-items:center; gap:16px; margin-top:10px; }
+.modal-qty button{
+  width:38px; height:38px; border-radius:50%; border:1.5px solid rgba(34,40,30,.2);
+  font-weight:800; font-size:1.1rem; display:flex; align-items:center; justify-content:center;
+  transition: background .2s var(--ease);
+}
+.modal-qty button:hover{ background: var(--creme-2); }
+.modal-qty button:disabled{ opacity:.35; cursor:not-allowed; }
+.modal-qty span{ font-weight:800; min-width:24px; text-align:center; font-size:1.05rem; }
+.modal-stock-note{ margin-top:8px; font-size:.76rem; color: var(--carvao-60); min-height:1em; }
+
+.modal-actions{ margin-top:24px; }
+
+/* =========================================================
+   CARRINHO (DRAWER)
+   ========================================================= */
+#cart-overlay{
+  position:fixed; inset:0; z-index:140; background: rgba(20,25,15,.55); backdrop-filter: blur(2px);
+  opacity:0; pointer-events:none; transition: opacity .3s var(--ease);
+}
+#cart-overlay.is-open{ opacity:1; pointer-events:auto; }
+
+#cart-drawer{
+  position:fixed; top:0; right:0; height:100%; width:92%; max-width:420px; z-index:150;
+  background:#fff; color: var(--carvao); display:flex; flex-direction:column;
+  transform: translateX(100%); transition: transform .35s var(--ease);
+  box-shadow: -24px 0 60px -20px rgba(0,0,0,.4);
+}
+#cart-drawer.is-open{ transform:translateX(0); }
+
+.cart-head{ display:flex; align-items:center; justify-content:space-between; padding:20px 22px 16px; border-bottom:1px solid var(--creme-2); }
+.cart-head h2{ font-size:1.35rem; margin:0; }
+.cart-close{ width:38px; height:38px; border-radius:50%; background: var(--creme-2); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+.cart-body{ flex:1; overflow-y:auto; padding:6px 22px; }
+.cart-empty{ text-align:center; padding:60px 10px; color: var(--carvao-60); }
+.cart-empty svg{ width:44px; height:44px; opacity:.3; margin-bottom:14px; }
+
+.cart-item{ display:flex; gap:14px; padding:16px 0; border-bottom:1px solid var(--creme-2); }
+.cart-item-media{
+  width:56px; height:56px; border-radius:14px; flex:none;
+  background: var(--creme-2); display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+}
+.cart-item-info{ flex:1; min-width:0; }
+.cart-item-info h4{ font-size:.9rem; font-weight:700; margin:0; }
+.cart-item-meta{ font-size:.76rem; color: var(--carvao-60); margin-top:2px; }
+.cart-item-price{ font-family: var(--f-mono); font-weight:700; margin-top:6px; font-size:.92rem; }
+.qty-stepper{ display:flex; align-items:center; gap:10px; margin-top:8px; }
+.qty-stepper button{
+  width:24px; height:24px; border-radius:50%; border:1px solid rgba(34,40,30,.25);
+  font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.85rem;
+}
+.qty-stepper span{ font-weight:700; font-size:.85rem; min-width:16px; text-align:center; }
+.cart-item-remove{ border:none; background:none; color: var(--carvao-60); font-size:.72rem; font-weight:700; text-decoration:underline; padding:0; margin-top:8px; }
+
+.cart-foot{ padding:18px 22px 24px; border-top:1px solid var(--creme-2); }
+.cart-subtotal-row{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; }
+.cart-subtotal-row span:first-child{ font-family: var(--f-mono); font-size:.7rem; color: var(--carvao-60); text-transform:uppercase; letter-spacing:.04em; }
+.cart-subtotal-row span:last-child{ font-size:1.35rem; font-weight:800; }
+.cart-hint{ font-size:.72rem; color: var(--carvao-60); margin-top:10px; margin-bottom:0; text-align:center; }
 
 /* =========================================================
    REVEAL ON SCROLL
